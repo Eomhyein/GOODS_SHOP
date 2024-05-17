@@ -75,6 +75,9 @@
 }</code></pre>
 
 ### [상품 생성 (C)]
+**POST
+/products**
+
 ## **👉 Request**</br>
 **[Body]**
 
