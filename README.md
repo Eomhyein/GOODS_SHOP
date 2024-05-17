@@ -1,5 +1,5 @@
 **[2024.05.17]**
-### 내배캠 장터 백엔드 서버 만들기
+# 내배캠 장터 백엔드 서버 만들기
 ## [목표]
 - "Node.js와 Express.js를 활용한 나만의 내배캠 장터 백엔드 서버 만들기"
 1. Node.js를 이용해서 Javascript 코드를 실행할 수 있습니다.
@@ -16,7 +16,7 @@
 5. **ODM**: **MongoDB**의 데이터를 쉽게 읽고 쓰게 해주는 [**mongoose](https://mongoosejs.com/docs/guide.html) ODM**을 사용합니다.
 
 ## [API 명세서]
-# [공통 명세 사항]
+### [공통 명세 사항]
 -> Request
 <- Response
 **[Success]**
@@ -28,7 +28,8 @@
 |data|Object|API 호출 결과 데이터|
 
 **[예시]**
-`{
+<pre><code>
+{
   "status": 201,
   "message": "상품 생성에 성공했습니다.",
   "data": {
@@ -40,7 +41,8 @@
     "createdAt": "2024-05-01T05:11:06.285Z",
     "updatedAt": "2024-05-01T05:11:06.285Z", 
   }
-}`
+}
+</code></pre>
 **[Failure]**
 **[정의]**
 |이름|타입|설명|
