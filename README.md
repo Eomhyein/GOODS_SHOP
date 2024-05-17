@@ -15,6 +15,14 @@
 5) **ODM**: **MongoDB**의 데이터를 쉽게 읽고 쓰게 해주는 [**mongoose](https://mongoosejs.com/docs/guide.html) ODM**을 사용합니다.
 
 ## [API 명세서]
+**[예시]**
+|분류|설명|Method|URL|
+|------|---|---|---|
+|  |공통 명세 사항|  |   |
+|상품|상품 생성(C)|POST|/products|
+|상품|상품 목록 조회 (R)|GET|/products|
+
+
 ### [공통 명세 사항]
 ## **👉 Request**</br>
 ## **👈 Response**</br>
