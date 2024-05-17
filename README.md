@@ -16,10 +16,10 @@
 
 ## [API 명세서]
 ### [공통 명세 사항]
-**👉 Request**
-**👈 Response**
-**[Success]**
-**[정의]**
+**👉 Request**</br>
+**👈 Response**</br>
+**[Success]**</br>
+**[정의]**</br>
 |이름|타입|설명|
 |------|---|---|
 |status|number|HTTP Status Code|
@@ -40,8 +40,8 @@
     "updatedAt": "2024-05-01T05:11:06.285Z", 
   }
 }</code></pre>
-**[Failure]**
-**[정의]**
+**[Failure]**</br>
+**[정의]**</br>
 |이름|타입|설명|
 |------|---|---|
 |status|number|HTTP Status Code|
