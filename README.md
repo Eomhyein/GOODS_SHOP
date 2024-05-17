@@ -8,27 +8,61 @@
 4. AWS EC2에 Express.js를 이용한 웹 서비스를 배포할 수 있습니다.
 5. 프로젝트에 요구 사항을 토대로 API 리스트를 작성하고, 백엔드 서버를 설계할 수 있습니다.
 
-**[기술 스택]**
+## [기술 스택]
 1. **웹 프레임워크**: Node.js에서 가장 대표적인 웹 프레임워크인 **Express.js**를 사용합니다.
 2. **패키지 매니저**: 대형 코드의 일관성, 보안, 성능 문제 해결에 적합한 **yarn** 패키지 매니저를 사용합니다. **(npm을 사용해도 되지만, 두 가지를 혼용하지는 마세요)**
 3. **모듈 시스템**: 최신 JS 문법을 지원하는 **ESM(ES6 모듈 시스템)**을 사용합니다.
 4. **데이터베이스**: 대표적인 **NoSQL** 중 하나인 **MongoDB**를 직접 설치하지 않고, Cloud 서비스 **[MongoDB Atlas](https://www.mongodb.com/products/platform/cloud)**에서 대여해 사용합니다.
 5. **ODM**: **MongoDB**의 데이터를 쉽게 읽고 쓰게 해주는 [**mongoose](https://mongoosejs.com/docs/guide.html) ODM**을 사용합니다.
 
-**[API 명세서]**
+## [API 명세서]
+# [공통 명세 사항]
+-> Request
+<- Response
+**[Success]**
+**[정의]**
+|이름|타입|설명|
+|------|---|---|
+|status|number|HTTP Status Code|
+|message|string|API 호출 성공 메세지|
+|data|Object|API 호출 결과 데이터|
+
+**[예시]**
+`{
+  "status": 201,
+  "message": "상품 생성에 성공했습니다.",
+  "data": {
+    "id": "507f1f77bcf86cd799439011",
+    "name": "페레로로쉐",
+    "description": "맛있는 초콜렛",
+    "manager": "스파르탄",
+    "status": "FOR_SALE",
+    "createdAt": "2024-05-01T05:11:06.285Z",
+    "updatedAt": "2024-05-01T05:11:06.285Z", 
+  }
+}`
+**[Failure]**
+**[정의]**
+|이름|타입|설명|
+|------|---|---|
+|status|number|HTTP Status Code|
+|message|string|API 호출 성공 메세지|
+
+|status|message|
+|------|---|
+|400|비밀번호를 입력해 주세요.|
+|401|비밀번호가 일치하지 않습니다.|
+|404|상품이 존재하지 않습니다.|
+|500|예기치 못한 에러가 발생했습니다. 관리자에게 문의해 주세요.|
+
+**[예시]**
+`{
+  "status": 404,
+  "message": "상품이 존재하지 않습니다.",
+}`
 
 
-
-
-
-
-
-
-
-
-
-
-**[어려운점]**
+## [어려운점]
 - CRUD 중 C만 구현함, 나머지는 못함, ing 구현중이라고 말할 수 있음
 - MongoDB와 mongoose 이용 데이터베이 설계, 활용은 해보았지만 완벽하지 못함
 - .gitignore와 .env 사용 처음해봄
