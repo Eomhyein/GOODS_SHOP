@@ -356,3 +356,5 @@
 [2024.05.17 (금)]
 - first commit : 12시 제출한 개인 과제 결과물
 - first commit 이후 : 해석본보고 업그레이드 한 상태
+- README에 API 명세서 추가
+- issues : 추가
