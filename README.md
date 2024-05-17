@@ -146,6 +146,111 @@
 }</code></pre>
 
 
+### [상품 목록 조회 (R)]
+|Method|URL|
+|------|---|
+|GET|/products|
+
+## **👉 Request**</br>
+## **👈 Response**</br>
+
+**[Success]**
+
+**[정의]**
+|이름|타입|설명|
+|------|---|---|
+|id|string|상품 ID|
+|name|string|상품명|
+|description|string|상품 설명|
+|manager|string|담당자|
+|status|string|상품 상태|
+|createdAt|Date|생성 일시|
+|updatedAt|Date|수정 일시|
+
+**[예시]**
+<pre><code>{
+  "status": 200,
+  "message": "상품 목록 조회에 성공했습니다.",
+  "data": [
+	  {
+	    "id": "507f1f77bcf86cd799439011",
+	    "name": "페레로로쉐",
+	    "description": "맛있는 초콜렛",
+	    "manager": "스파르탄",
+	    "status": "FOR_SALE",
+	    "createdAt": "2024-05-01T05:11:06.285Z",
+	    "updatedAt": "2024-05-01T05:11:06.285Z"
+	  },
+	  {
+	    "id": "507f1f77bcf86cd799439011",
+	    "name": "킨더조이",
+	    "description": "장난감 초콜렛",
+	    "manager": "스파르탄",
+	    "status": "FOR_SALE",
+	    "createdAt": "2024-05-01T05:11:06.285Z",
+	    "updatedAt": "2024-05-01T05:11:06.285Z"
+	  }
+  ]
+}</code></pre>
+
+
+### [상품 상세 조회 (R)]
+|Method|URL|
+|------|---|
+|GET|/products/:id|
+
+## **👉 Request**</br>
+**[Path Paramerers]**
+
+**[정의]**
+|이름|타입|설명|
+|------|---|------|
+|id|string|상품 ID|
+
+**[예시]**
+<pre><code>/products/507f1f77bcf86cd799439011
+</code></pre>
+
+## **👈 Response**</br>
+
+**[Success]**
+
+**[정의]**
+|이름|타입|설명|
+|------|---|---|
+|id|string|상품 ID|
+|name|string|상품명|
+|description|string|상품 설명|
+|manager|string|담당자|
+|status|string|상품 상태|
+|createdAt|Date|생성 일시|
+|updatedAt|Date|수정 일시|
+
+**[예시]**
+<pre><code>{
+  "status": 200,
+  "message": "상품 상세 조회에 성공했습니다.",
+  "data": {
+    "id": "507f1f77bcf86cd799439011",
+    "name": "페레로로쉐",
+    "description": "맛있는 초콜렛",
+    "manager": "스파르탄",
+    "status": "FOR_SALE",
+    "createdAt": "2024-05-01T05:11:06.285Z",
+    "updatedAt": "2024-05-01T05:11:06.285Z"
+  }
+}</code></pre>
+
+
+
+
+
+
+
+
+
+
+
 ## [어려운점]
 - CRUD 중 C만 구현함, 나머지는 못함, ing 구현중이라고 말할 수 있음
 - MongoDB와 mongoose 이용 데이터베이 설계, 활용은 해보았지만 완벽하지 못함
