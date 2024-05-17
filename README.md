@@ -1,6 +1,6 @@
 **[2024.05.17]**
-**내배캠 장터 백엔드 서버 만들기**
-**[목표]**
+### 내배캠 장터 백엔드 서버 만들기
+## [목표]
 - "Node.js와 Express.js를 활용한 나만의 내배캠 장터 백엔드 서버 만들기"
 1. Node.js를 이용해서 Javascript 코드를 실행할 수 있습니다.
 2. Express.js를 기반으로 웹 서버를 만들고, **CRUD(Create, Read, Update, Delete)** 기능이 포함된 REST API를 만들 수 있습니다.
