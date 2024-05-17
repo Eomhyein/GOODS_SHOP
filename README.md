@@ -15,6 +15,208 @@
 4. **데이터베이스**: 대표적인 **NoSQL** 중 하나인 **MongoDB**를 직접 설치하지 않고, Cloud 서비스 **[MongoDB Atlas](https://www.mongodb.com/products/platform/cloud)**에서 대여해 사용합니다.
 5. **ODM**: **MongoDB**의 데이터를 쉽게 읽고 쓰게 해주는 [**mongoose](https://mongoosejs.com/docs/guide.html) ODM**을 사용합니다.
 
+[API 명세서]
+**[요구사항]
+0. 설계:요구사항 파악 및 스키마 정의
+--API 명세서 확인--
+1. 공통 명세 사항
+1) Request:
+2) Response:**
+  [성공]
+  -status:number:HTTP Status Code
+  -message:string:API 호출 성공 메세지
+  -data Object:API 호출 결과 데이터
+  예) {
+  "status": 201,
+  "message": "상품 생성에 성공했습니다.",
+  "data": {
+    "id": "507f1f77bcf86cd799439011",
+    "name": "페레로로쉐",
+    "description": "맛있는 초콜렛",
+    "manager": "스파르탄",
+    "status": "FOR_SALE",
+    "createdAt": "2024-05-01T05:11:06.285Z",
+    "updatedAt": "2024-05-01T05:11:06.285Z", 
+    }
+  }
+  [실패]
+  -status:number:HTTP Status Code
+  -message:string:API 호출 실패 메세지
+    -400:비밀번호를 입력해 주세요.
+    -401:비밀번호가 일치하지 않습니다
+    -404:상품이 존재하지 않습니다
+    -500:예상치 못한 에러가 발생했습니다. 관리자에게 문의 해주세요.
+  예) {
+  "status": 404,
+  "message": "상품이 존재하지 않습니다.",
+  }
+**
+2. 상품 생성(C) -POST-URL:/products
+1) Request:**
+  [Body]
+  -name:string:Y:상품명
+  -description:string:Y:상품 설명
+  -manager:string:Y:담당자
+  -password:string:Y:비밀번호
+  예){
+    "name": "페레로로쉐",
+    "description": "맛있는 초콜렛",
+    "manager": "스파르탄",
+    "password": "spartan!!123"
+  }
+
+**2) Response:**
+  [성공]
+  -id:string:상품 ID
+  -name:string:상품명
+  -description:string:상품 설명
+  -manager:string:담당자
+  -status:string:상품 상태
+  -createdAt:Date:생성 일시
+  -updatedAt:Date:수정 일시
+  예) {
+    "status": 201,
+    "message": "상품 생성에 성공했습니다.",
+    "data": {
+      "id": "507f1f77bcf86cd799439011",
+      "name": "페레로로쉐",
+      "description": "맛있는 초콜렛",
+      "manager": "스파르탄",
+      "status": "FOR_SALE",
+      "createdAt": "2024-05-01T05:11:06.285Z",
+      "updatedAt": "2024-05-01T05:11:06.285Z"
+    }
+  }
+  [실패]
+  -400:상품 정보를 모두 입력해 주세요.
+  -400:이미 등록 된 상품입니다.
+  예) {
+    "status": 400,
+    "message": "상품 정보를 모두 입력해 주세요."
+  }
+
+**3. 상품 목록 조회(R)-GET-URL:/products
+1) Request:
+2) Response:**
+  [성공]
+  -id:string:상품 ID
+  -name:string:상품명
+  -description:string:상품 설명
+  -manager:string:담당자
+  -status:string:상품 상태
+  -createdAt:Date:생성 일시
+  -updatedAt:Date:수정 일시
+  예) {
+  "status": 200,
+  "message": "상품 목록 조회에 성공했습니다.",
+  "data": [
+	  {
+	    "id": "507f1f77bcf86cd799439011",
+	    "name": "페레로로쉐",
+	    "description": "맛있는 초콜렛",
+	    "manager": "스파르탄",
+	    "status": "FOR_SALE",
+	    "createdAt": "2024-05-01T05:11:06.285Z",
+	    "updatedAt": "2024-05-01T05:11:06.285Z"
+	  },
+	  {
+	    "id": "507f1f77bcf86cd799439011",
+	    "name": "킨더조이",
+	    "description": "장난감 초콜렛",
+	    "manager": "스파르탄",
+	    "status": "FOR_SALE",
+	    "createdAt": "2024-05-01T05:11:06.285Z",
+	    "updatedAt": "2024-05-01T05:11:06.285Z"
+      }
+    ]
+  }
+
+**4. 상품 상세 조회(R)-GET-URL:/products/:id
+1) Request:**
+  [Path Parameters]
+  -id:string:상품 ID
+  예) /products/507f1f77bcf86cd799439011
+**2) Response:**
+  [성공]
+  -id:string:상품 ID
+  -name:string:상품명
+  -description:string:상품 설명
+  -manager:string:담당자
+  -status:string:상품 상태
+  -createdAt:Date:생성 일시
+  -updatedAt:Date:수정 일시
+  예) {
+  "status": 200,
+  "message": "상품 상세 조회에 성공했습니다.",
+  "data": {
+    "id": "507f1f77bcf86cd799439011",
+    "name": "페레로로쉐",
+    "description": "맛있는 초콜렛",
+    "manager": "스파르탄",
+    "status": "FOR_SALE",
+    "createdAt": "2024-05-01T05:11:06.285Z",
+    "updatedAt": "2024-05-01T05:11:06.285Z"
+    }
+  }
+
+**5. 상품 수정(U)-PUT-URL:/products/:id
+1) Request:**
+  [Path Parameters]
+  -id:string:상품 ID
+  예) /products/507f1f77bcf86cd799439011
+  [Body]
+  -name:string:N:상품명
+  -description:string:N:상품 설명
+  -manager:string:N:담당자
+  -status:string:N:상품 상태 (FOR_SALE, SOLD_OUT)
+  -password:string:Y:비밀번호
+  예) {
+  "name": "페레로로쉐",
+  "description": "맛있는 초콜렛",
+  "manager": "스파르탄",
+  "status": "SOLD_OUT",
+  "password": "spartan!!123"
+  } 
+**2) Response:**
+  [성공]
+  -id:string:상품 ID
+  -name:string:상품명
+  -description:string:상품 설명
+  -manager:string:담당자
+  -status:string:상품 상태
+  -createdAt:Date:생성 일시
+  -updatedAt:Date:수정 일시
+  예){
+  "status": 200,
+  "message": "상품 수정에 성공했습니다.",
+  "data": {
+    "id": "507f1f77bcf86cd799439011",
+    "name": "페레로로쉐",
+    "description": "맛있는 초콜렛",
+    "manager": "스파르탄",
+    "status": "SOLD_OUT",
+    "createdAt": "2024-05-01T05:11:06.285Z",
+    "updatedAt": "2024-05-01T05:11:06.285Z"
+    }
+  }
+**6. 상품 삭제(D)-DELETE-URL:/products/:id**
+**1) Request:**
+  [Path Parameters]
+  -id:string:상품 ID
+  예) /products/507f1f77bcf86cd799439011
+**2) Response:**
+  [성공]
+  -id:string:상품 ID
+  예) {
+  "status": 200,
+  "message": "상품 삭제에 성공했습니다.",
+  "data": {
+    "id": "507f1f77bcf86cd799439011"
+    }
+  }
+
+
+
 [어려운점]
 - CRUD 중 C만 구현함, 나머지는 못함, ing 구현중이라고 말할 수 있음
 - MongoDB와 mongoose 이용 데이터베이 설계, 활용은 해보았지만 완벽하지 못함
