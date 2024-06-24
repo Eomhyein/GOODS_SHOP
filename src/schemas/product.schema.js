@@ -1,4 +1,4 @@
-// schemas/products.js
+// schemas/products.schema.js
 // 상품 관리하는 스키마 구현
 
 // 요구사항

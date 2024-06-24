@@ -1,17 +1,17 @@
-// /schemas/mongodb.js
+// /schemas/index.js
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 
 dotenv.config();
 
-const{MONGO_URL}=process.env;
+const{MONGODB_URL}=process.env;
 
 const connect = () => {
   mongoose
     .connect(
-      MONGO_URL,
+      process.env.MONGODB_URL,
       {
-        dbName: 'GOODS_SHOP', // GOODS_SHOP 데이터베이스명을 사용합니다.
+        dbName: process.env.MONGODB_NAME, // 데이터베이스명
       },
     )
     .catch((err) => console.log(err))
