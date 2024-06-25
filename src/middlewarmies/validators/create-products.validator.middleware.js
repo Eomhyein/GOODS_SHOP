@@ -4,7 +4,7 @@
 // 예) ****“상품명을 입력해 주세요”, “담당자를 입력해 주세요.” 등…
 import Joi from 'joi';
 
-export const createdProductValidator = async (req, res, next) => {
+export const createProductValidator = async (req, res, next) => {
   try {
     const joiSchema = Joi.object({
       name: Joi.string().required().messages({
