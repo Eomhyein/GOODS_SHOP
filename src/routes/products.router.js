@@ -8,8 +8,6 @@ import { deleteProductValidator } from '../middlewares/validators/delete-product
 // express.js의 라우터를 생성합니다.
 const productsRouter = express.Router();
 
-// 상품 목록 조회 시 상품이 없는 경우에는 빈 배열([])을 반환합니다.
-
 // 1. 상품 등록 API구현
 productsRouter.post('/products', createProductValidator, async (req, res, next) => {
   try {
@@ -44,9 +42,10 @@ productsRouter.post('/products', createProductValidator, async (req, res, next) 
 });
 
 // 2. 상품 목록 조회
-productsRouter.get('/products', async (req, res) => {
+productsRouter.get('/products', async (req, res, next) => {
   try {
     // 2-1. 상품 목록 데이터 가져오기
+    // 2-3. 상품 목록 조회 시 상품이 없는 경우에는 빈 배열([])을 반환합니다. (find이용)
     const productList = await products.find().sort('-createdAt').exec();
     // 2-2. 200 : 상품 목록 조회에 성공했습니다.
     return res.status(200).json({status: 200, message: '상품 목록 조회에 성공했습니다.', productList });
@@ -56,7 +55,7 @@ productsRouter.get('/products', async (req, res) => {
 });
 
 // 3. 상품 상세 조회
-productsRouter.get('/products/:id', async (req, res) => {
+productsRouter.get('/products/:id', async (req, res, next) => {
   try {
     // 3-1. 상품 ID를 path parameter로 전달받는다.
     const { id } = req.params;
@@ -76,7 +75,7 @@ productsRouter.get('/products/:id', async (req, res) => {
 });
 
 // 4. 상품 수정
-productsRouter.put('/products/:id', updateProductValidator, async (req, res) => {
+productsRouter.put('/products/:id', updateProductValidator, async (req, res, next) => {
   try {
     // 4-1. 상품 ID를 path parameter로 전달받는다.
     const { id } = req.params;
@@ -109,7 +108,7 @@ productsRouter.put('/products/:id', updateProductValidator, async (req, res) => 
 });
 
 // 5. 상품 삭제
-productsRouter.delete('/products/:id', deleteProductValidator, async (req, res) => {
+productsRouter.delete('/products/:id', deleteProductValidator, async (req, res, next) => {
   try {
     // 5-1. 상품 ID를 path parameter로 전달받는다.
     const { id } = req.params;
