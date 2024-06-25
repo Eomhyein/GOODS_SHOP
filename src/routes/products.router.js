@@ -28,10 +28,14 @@ productsRouter.post('/products', async (req, res, next) => {
 
 // 상품 목록 조회
 productsRouter.get('/products', async (req, res) => {
-  // 상품 목록 데이터 가져오기
-  // const createdProducts = await products.find().sort('-order').exec();
-  // // 200 : 상품 목록 조회에 성공했습니다.
-  // return res.status(200).json({status: 200, message: '상품 상세 조회에 성공했습니다.', createdProduct  });
+  try {
+    // 상품 목록 데이터 가져오기
+    const productList = await products.find().sort('-createdAt').exec();
+    // 200 : 상품 목록 조회에 성공했습니다.
+    return res.status(200).json({status: 200, message: '상품 상세 조회에 성공했습니다.', productList  });
+  } catch (error) {
+    next(error);
+  }
 });
 
 
