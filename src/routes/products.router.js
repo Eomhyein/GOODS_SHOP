@@ -47,6 +47,7 @@ productsRouter.get('/products', async (req, res) => {
 
 
 
+
 // 상품 상세 조회
 productsRouter.get('/products/:id', async (req, res) => {
   try {
