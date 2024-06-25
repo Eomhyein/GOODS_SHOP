@@ -95,7 +95,29 @@ productsRouter.put('/products/:id', async (req, res) => {
 
 // 상품 삭제
 // 200: 상품 삭제에 성공했습니다.
-
+productsRouter.delete('/products/:id', async (req, res) => {
+  try {
+    // 상품 ID를 path parameter로 전달받는다.
+    const { id } = req.params;
+    // 비밀번호 Request body로 전달 받기
+    const {password} = req.body;
+    // DB에서 조회하기 (패스워드포함)
+    // 삭제할 상품과 비밀번호 일치 여부를 확인한 후, 동일할 때만 상품이 삭제되어야 합니다. 
+    const productInfo = await products.findById(id, {password: true}).exec();
+    const isPasswordMatched = password === productInfo.password;
+    // 일치하지 않을 경우, “비밀번호가 일치하지 않습니다.” 메세지를 반환합니다.
+    if (!isPasswordMatched) {
+      return res.status(401).json({status: 401, message: '비밀번호가 일치하지 않습니다.' });
+    }
+    // DB에서 수정하기
+    const deletedProduct = await products.findByIdAndDelete(id);
+    
+    // 200 : 상품 수정에 성공했습니다.
+    return res.status(200).json({status: 200, message: '상품 삭제에 성공했습니다.',  deletedProduct});
+  } catch (error) {
+    next(error);
+  }
+});
 
 
 
