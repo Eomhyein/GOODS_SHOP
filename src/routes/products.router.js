@@ -1,9 +1,9 @@
 // routes/products.router.js
 import express from 'express';
 import products from '../schemas/product.schema.js'; // 상품 관리하는 스키마
-import { createProductValidator } from '../middlewarmies/validators/create-products.validator.middleware.js';
-import { updateProductValidator } from '../middlewarmies/validators/update-products.validator.middleware.js';
-import { deleteProductValidator } from '../middlewarmies/validators/delete-products.validator.middleware.js';
+import { createProductValidator } from '../middlewares/validators/create-products.validator.middleware.js';
+import { updateProductValidator } from '../middlewares/validators/update-products.validator.middleware.js';
+import { deleteProductValidator } from '../middlewares/validators/delete-products.validator.middleware.js';
 
 // express.js의 라우터를 생성합니다.
 const productsRouter = express.Router();
