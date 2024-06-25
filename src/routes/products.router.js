@@ -55,7 +55,7 @@ productsRouter.get('/products/:id', async (req, res) => {
     const { id } = req.params;
     // DB에서 조회하기
     const productDetail = await products.findById(id).exec();
-    // 200 : 상품 목록 조회에 성공했습니다.
+    // 200 : 상품 상세 조회에 성공했습니다.
     return res.status(200).json({status: 200, message: '상품 상세 조회에 성공했습니다.', productDetail });
   } catch (error) {
     next(error);
@@ -68,11 +68,35 @@ productsRouter.get('/products/:id', async (req, res) => {
 
 // 상품 수정
 // 200: 상품 수정에 성공했습니다.
-
-
+productsRouter.put('/products/:id', async (req, res) => {
+  try {
+    // 상품 ID를 path parameter로 전달받는다.
+    const { id } = req.params;
+    // 상품명, 상품 설명, 담당자, 상품 상태, 비밀번호 Request body로 전달 받기
+    const {name, description, status, manager, password} = req.body;
+    // DB에서 조회하기 (패스워드포함)
+    // 수정할 상품과 비밀번호 일치 여부를 확인한 후, 동일할 때만 상품이 수정되어야 합니다. 
+    const productInfo = await products.findById(id, {password: true}).exec();
+    const isPasswordMatched = password === productInfo.password;
+    // 일치하지 않을 경우, “비밀번호가 일치하지 않습니다.” 메세지를 반환합니다.
+    if (!isPasswordMatched) {
+      return res.status(401).json({status: 401, message: '비밀번호가 일치하지 않습니다.' });
+    }
+    // DB에서 수정하기
+    const updatedProduct = await products.findByIdAndUpdate(id, { name, description, status, manager }, { new: true }).exec();
+    
+    // 200 : 상품 수정에 성공했습니다.
+    return res.status(200).json({status: 200, message: '상품 수정에 성공했습니다.',  updatedProduct});
+  } catch (error) {
+    next(error);
+  }
+});
 
 
 // 상품 삭제
 // 200: 상품 삭제에 성공했습니다.
+
+
+
 
 export default productsRouter;
