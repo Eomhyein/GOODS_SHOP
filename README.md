@@ -388,3 +388,34 @@
 [2024.06.24 (월)]
 
 - #2 : 파일 기본 세팅
+- #3 : 상품 생성 API 구현
+- #4 : 상품 목록 조회 API 구현
+- #5 : 상품 상세 조회 API 구현
+- #6 : 상품 수정 API 구현
+- #7 : 상품 삭제 API 구현
+- #8 : JOI 이용한 유효성 검증 구현
+- #9 : 에러처리 미들웨어 구현
+
+# 실행 방법
+
+1. `.env` 파일을 생성하여, 환경변수를 추가한다.
+2. `yarn` 명령으로 프로젝트에 필요한 패키지를 설치한다.
+3. `yarn start`명령으로 서버를 실행한다. (개발 시에는 `yarn dev`)
+
+# 환경변수
+
+## 설명
+
+- SERVER_PORT: 서버가 실행 될 포트
+- MONGODB_URL: MongoDB가 서비스되고 있는 URL
+- MONGODB_NAME: MongoDB 데이터베이스 이름
+
+## 예시
+
+```bash
+SERVER_PORT=3000
+MONGODB_URL=mongodb+srv://admin:password@cluster0.qwer.mongodb.net/?retryWrites=true&w=majority
+MONGODB_NAME=node_beginner
+```
+
+---
