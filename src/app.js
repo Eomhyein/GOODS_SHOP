@@ -4,9 +4,9 @@ import dotenv from 'dotenv';
 import productsRouter from './routes/products.router.js';
 import connect from './schemas/index.js'; // 몽고디비연결
 
+dotenv.config();
 const app = express();
 
-const router = express.Router(); // 라우터 생성
 const PORT = process.env.SERVER_PORT;
 
 connect(); // 몽고디비 연결하기 위한 connect 함수를 실행한다.
@@ -15,7 +15,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true })); 
 
 // localhost:3000/ -> productsRouter 라우터를 등록 합니다.
-app.use('/products', productsRouter);
+app.use('/api', productsRouter);
 
 // 서버시작 : Express.js는 지정된 포트 번호를 사용하여 서버를 시작합니다. 
 app.listen(PORT, () => {
