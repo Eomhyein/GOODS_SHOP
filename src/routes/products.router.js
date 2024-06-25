@@ -26,13 +26,17 @@ productsRouter.post('/products', async (req, res, next) => {
   }
 });
 
+
+
+
+
 // 상품 목록 조회
 productsRouter.get('/products', async (req, res) => {
   try {
     // 상품 목록 데이터 가져오기
     const productList = await products.find().sort('-createdAt').exec();
     // 200 : 상품 목록 조회에 성공했습니다.
-    return res.status(200).json({status: 200, message: '상품 상세 조회에 성공했습니다.', productList  });
+    return res.status(200).json({status: 200, message: '상품 목록 조회에 성공했습니다.', productList });
   } catch (error) {
     next(error);
   }
@@ -40,11 +44,33 @@ productsRouter.get('/products', async (req, res) => {
 
 
 
+
+
+
+
 // 상품 상세 조회
-// 200 : 상품 상세 조회에 성공했습니다.
+productsRouter.get('/products/:id', async (req, res) => {
+  try {
+    // 상품 ID를 path parameter로 전달받는다.
+    const { id } = req.params;
+    // DB에서 조회하기
+    const productDetail = await products.findById(id).exec();
+    // 200 : 상품 목록 조회에 성공했습니다.
+    return res.status(200).json({status: 200, message: '상품 상세 조회에 성공했습니다.', productDetail });
+  } catch (error) {
+    next(error);
+  }
+});
+
+
+
+
 
 // 상품 수정
 // 200: 상품 수정에 성공했습니다.
+
+
+
 
 // 상품 삭제
 // 200: 상품 삭제에 성공했습니다.
